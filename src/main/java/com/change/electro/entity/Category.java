@@ -1,9 +1,8 @@
 package com.change.electro.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "category")
@@ -16,4 +15,17 @@ public class Category {
 
     @Column(name = "description", length = 1000)
     private String description;
+
+    // Các sản phẩm thuộc category này
+    @OneToMany(mappedBy = "category")
+    private List<Product> products;
+
+    // Danh mục cha của sản phẩm
+    @ManyToOne
+    @JoinColumn(name = "category_parent_id",referencedColumnName = "category_id")
+    private Category cateParent;
+
+    // Các danh mục sản phẩm con của category này ( nếu có )
+    @OneToMany(mappedBy = "cateParent")
+    private List<Category> childCate;
 }

@@ -1,11 +1,9 @@
 package com.change.electro.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Table(name = "Product")
@@ -25,5 +23,21 @@ public class Product {
     private int quantityInStock;
     @Column(name = "image_url", length = 255)
     private String imageUrl;
+
+    //Những người đã review sản phẩm
+    @ManyToMany
+    @JoinTable(name="Review", joinColumns = @JoinColumn(name="product_id"),inverseJoinColumns = @JoinColumn(name="user_id"))
+    private List<User> reviewers;
+
+    // Những bình luận của sản phẩm
+    @ManyToMany
+    @JoinTable(name="Review", joinColumns = @JoinColumn(name="product_id"),inverseJoinColumns = @JoinColumn(name="review_id"))
+    private List<Review> reviews;
+
+    // Danh mục của sản phẩm này
+    @ManyToOne
+    @JoinColumn(name="category_id")
+    private Category category;
+
 
 }

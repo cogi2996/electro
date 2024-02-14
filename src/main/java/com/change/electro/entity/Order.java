@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
+
 @Entity
 @Table(name="Order")
 public class Order {
@@ -23,5 +25,13 @@ public class Order {
 
     @Column(name = "status")
     private int status;
+
+    // Người đã đặt hàng
+    @OneToMany(mappedBy = "orders")
+    private User orderUser;
+
+    // Các sản phẩm đã order của user
+    @OneToMany(mappedBy = "itemOrder")
+    private List<OrderItem> listItems;
 
 }

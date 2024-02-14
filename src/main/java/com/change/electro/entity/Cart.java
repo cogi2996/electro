@@ -1,9 +1,8 @@
 package com.change.electro.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "cart")
@@ -12,5 +11,8 @@ public class Cart {
     @Column(name = "cart_id", length = 100)
     private String cartId;
 
+    //Các item trong giỏ hàng
+    @OneToMany(mappedBy = "cart")
+    private List<CartItem> cartItems;
 
 }

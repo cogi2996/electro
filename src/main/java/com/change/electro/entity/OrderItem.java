@@ -1,9 +1,6 @@
 package com.change.electro.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 
@@ -18,4 +15,15 @@ public class OrderItem {
 
     @Column(name = "price", precision = 10, scale = 2)
     private BigDecimal price;
+
+    // Order đang sở hữu item này
+    @ManyToOne
+    @JoinColumn(name="order_id")
+    private Order itemOrder;
+
+    // Product mà orderItem này đang giữ
+    // dùng để truy lại id product ( sau gắn link sản phẩm )
+    @OneToOne
+    @JoinColumn(name="product_id")
+    private Product product;
 }
