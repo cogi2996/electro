@@ -1,5 +1,6 @@
 package com.change.electro.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,6 +24,7 @@ public class Category {
 
     // Các sản phẩm thuộc category này
     @OneToMany(mappedBy = "category")
+    @JsonIgnore
     private List<Product> products;
 
     // Danh mục cha của sản phẩm
