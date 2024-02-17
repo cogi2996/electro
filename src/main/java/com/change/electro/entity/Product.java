@@ -1,13 +1,19 @@
 package com.change.electro.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.util.List;
-
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "Product")
 public class Product {
+
     @Id
     @Column(name = "product_id", length = 100)
     private String productId;
@@ -26,18 +32,28 @@ public class Product {
 
     //Những người đã review sản phẩm
     @ManyToMany
-    @JoinTable(name="Review", joinColumns = @JoinColumn(name="product_id"),inverseJoinColumns = @JoinColumn(name="user_id"))
+    @JoinTable(name = "Review", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
     private List<User> reviewers;
 
     // Những bình luận của sản phẩm
     @ManyToMany
-    @JoinTable(name="Review", joinColumns = @JoinColumn(name="product_id"),inverseJoinColumns = @JoinColumn(name="review_id"))
+    @JoinTable(name = "Review", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "review_id"))
     private List<Review> reviews;
 
     // Danh mục của sản phẩm này
     @ManyToOne
-    @JoinColumn(name="category_id")
+    @JoinColumn(name = "category_id")
     private Category category;
 
-
+    @Override
+    public String toString() {
+        return "Product{" +
+                "productId='" + productId + '\'' +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", quantityInStock=" + quantityInStock +
+                ", imageUrl='" + imageUrl + '\'' +
+                '}';
+    }
 }

@@ -1,9 +1,14 @@
 package com.change.electro.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
-
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "cart")
 public class Cart {
@@ -15,4 +20,10 @@ public class Cart {
     @OneToMany(mappedBy = "cart")
     private List<CartItem> cartItems;
 
+    @Override
+    public String toString() {
+        return "Cart{" +
+                "cartId='" + cartId + '\'' +
+                '}';
+    }
 }

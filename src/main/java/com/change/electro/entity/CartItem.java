@@ -1,7 +1,13 @@
 package com.change.electro.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "cart_item")
 public class CartItem {
@@ -20,4 +26,12 @@ public class CartItem {
     @OneToOne
     @JoinColumn(name="product_id")
     private Product product;
+
+    @Override
+    public String toString() {
+        return "CartItem{" +
+                "cartItemId='" + cartItemId + '\'' +
+                ", quantity=" + quantity +
+                '}';
+    }
 }

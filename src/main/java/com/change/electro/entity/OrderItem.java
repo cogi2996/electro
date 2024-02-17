@@ -1,9 +1,14 @@
 package com.change.electro.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.math.BigDecimal;
-
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "order_item")
 public class OrderItem {
@@ -26,4 +31,13 @@ public class OrderItem {
     @OneToOne
     @JoinColumn(name="product_id")
     private Product product;
+
+    @Override
+    public String toString() {
+        return "OrderItem{" +
+                "orderItemId='" + orderItemId + '\'' +
+                ", quantity=" + quantity +
+                ", price=" + price +
+                '}';
+    }
 }

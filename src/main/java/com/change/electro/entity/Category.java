@@ -1,9 +1,14 @@
 package com.change.electro.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
-
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "category")
 public class Category {
@@ -28,4 +33,13 @@ public class Category {
     // Các danh mục sản phẩm con của category này ( nếu có )
     @OneToMany(mappedBy = "cateParent")
     private List<Category> childCate;
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "categoryId='" + categoryId + '\'' +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }

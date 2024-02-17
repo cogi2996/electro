@@ -2,6 +2,7 @@ package com.change.electro.entity;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -28,4 +29,12 @@ public class Review {
     @ManyToMany(mappedBy = "reviews")
     private List<Product> products;
 
+    @Override
+    public String toString() {
+        return "Review{" +
+                "reviewId=" + reviewId +
+                ", time=" + time +
+                ", text='" + text + '\'' +
+                '}';
+    }
 }
